@@ -1,0 +1,78 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="appbar">
+    <img src="{% static 'notes/img/logo-getit.png' %}" class="logo"/>
+    <p class="subtitle">Como o Post-it, mas com outro verbo</p>
+</div>
+
+<form method="POST" class="form-card">
+    {% csrf_token %}
+    <div class="form-begin">
+        <input class="form-card-title" id="titulo" type="text" name="titulo" placeholder="Título" size="60" maxlength="42"/>
+        <input class="form-card-category" id="categoria" type="text" name="categoria" placeholder="Categoria" size="26" maxlength="42"/>
+    </div>
+    <textarea class="autoresize" id="detalhes" name="detalhes" placeholder="Digite o conteúdo..."></textarea>
+    <button class="btn" type="submit">Criar</button>
+</form>
+
+<div>
+    <a href="{% url 'show-category'%}">Categorias</a>
+</div>
+
+<div class="card-container">
+    {% for note in notes %}
+    <div class="card">
+        <div class="card-begin">
+            <div class="card-title">{{ note.title }}</div>
+            <div class="card-category">{{ note.category.name }}</div>
+        </div>
+        <div class="card-content">
+            <p id="detalhesEdit">{{ note.content }}</p>
+        </div>           
+        <div class="card-buttons">
+            <button type="button" class="pencil edit" data-toggle="modal" data-target="#myModal" 
+                onclick="salvaId('{{ note.id }}', '{{ note.title}}', '{{ note.content }}')" id="note_id">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </button>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="trash" formaction="{% url 'delete-note' note.id %}">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
+            </form>
+        </div> 
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Modal -->
+<div id="edit" class="modal fade" role="dialog">
+    <div class="modal-dialog" value="">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Editar</h4>
+        </div>
+        <form method="POST" class="form-card-modal">
+            {% csrf_token %}
+            <input class="form-card-title" id="tituloEdit" type="text" name="edit_titulo" placeholder="Título"/>
+            <textarea class="autoresize edit-content" id="detalhesEdit" name="edit_detalhes" placeholder="Digite o conteúdo..."></textarea>
+            <div class="modal-footer">
+                <button id="editar" class="btn" type="submit">Salvar Alterações</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+    

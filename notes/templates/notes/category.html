@@ -1,0 +1,21 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="appbar">
+    <img src="{% static 'notes/img/logo-getit.png' %}" class="logo"/>
+    <p class="subtitle">Como o Post-it, mas com outro verbo</p>
+</div>
+
+
+<div class="category-container">
+    {% for note in notes %}
+    {% if note.category.name != '' %}
+        <div class="category">
+            <a class="category-name" href="{% url 'category-list' note.category.name %}">{{ note.category.name }}</a>
+        </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}
