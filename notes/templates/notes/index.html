@@ -24,18 +24,16 @@
 <div class="card-container">
     {% for note in notes %}
     <div class="card">
-        <div class="card-begin">
-            <div class="card-title">{{ note.title }}</div>
-            <div class="card-category">{{ note.category.name }}</div>
-        </div>
+        <div class="card-title">{{ note.title }}</div>
         <div class="card-content">
             <p id="detalhesEdit">{{ note.content }}</p>
-        </div>           
+        </div> 
         <div class="card-buttons">
             <button type="button" class="pencil edit" data-toggle="modal" data-target="#myModal" 
-                onclick="salvaId('{{ note.id }}', '{{ note.title}}', '{{ note.content }}')" id="note_id">
+                onclick="salvaId('{{ note.id }}', '{{ note.title}}', '{{ note.content }}', '{{ note.category.name }}')" id="note_id">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
             </button>
+            <div class="card-category">{{ note.category.name }}</div>          
             <form method="POST">
                 {% csrf_token %}
                 <button type="submit" class="trash" formaction="{% url 'delete-note' note.id %}">
@@ -59,6 +57,7 @@
         <form method="POST" class="form-card-modal">
             {% csrf_token %}
             <input class="form-card-title" id="tituloEdit" type="text" name="edit_titulo" placeholder="Título"/>
+            <input class="form-card-title" id="categoryEdit" type="text" name="edit_categoria" placeholder="Categoria"/>
             <textarea class="autoresize edit-content" id="detalhesEdit" name="edit_detalhes" placeholder="Digite o conteúdo..."></textarea>
             <div class="modal-footer">
                 <button id="editar" class="btn" type="submit">Salvar Alterações</button>

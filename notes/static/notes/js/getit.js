@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-function salvaId(noteId, noteTitle, noteContent){
+function salvaId(noteId, noteTitle, noteContent, noteCategory){
   document.getElementById("editar").formAction = "edit_note/"+ noteId;
   document.getElementById("tituloEdit").value = noteTitle;
   document.getElementsByClassName("edit-content").detalhesEdit.innerHTML = noteContent;

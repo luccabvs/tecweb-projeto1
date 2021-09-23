@@ -66,7 +66,7 @@ body {
 }
 
 .pencil{
-  left: 0;
+  right: 10%;
 }
 
 .trash{
@@ -180,8 +180,8 @@ textarea {
   
 .card-category{
   position: absolute;
-  top: 0;
-  right: 5%;
+  bottom: 0;
+  left: 2%;
   font-size: 110%;
   -webkit-text-fill-color:#ffffff;
   -webkit-text-stroke:1.4px rgba(0, 0, 0, 0.6);
