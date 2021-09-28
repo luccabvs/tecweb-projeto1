@@ -33,7 +33,6 @@ def edit_note(request, note_id):
         if len(Tag.objects.filter(name=category)) > 0:
             note.category = Tag.objects.get(name=category)
         else:
-            print('tchau')
             new_category = Tag(name=category)
             new_category.save()
             note.category = new_category
