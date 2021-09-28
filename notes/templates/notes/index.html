@@ -5,21 +5,27 @@
 <div class="appbar">
     <img src="{% static 'notes/img/logo-getit.png' %}" class="logo"/>
     <p class="subtitle">Como o Post-it, mas com outro verbo</p>
+    <form method="GET" action="/">
+        <button class="home">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+            <div class="text-home">Home</div>
+        </button>
+    </form>
+    <form method="GET" action="{% url 'show-category' %}">
+        <button class="tags">
+            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+            <div class="text-tags">Categorias</div>
+        </button>
+    </form>
 </div>
 
 <form method="POST" class="form-card">
     {% csrf_token %}
-    <div class="form-begin">
-        <input class="form-card-title" id="titulo" type="text" name="titulo" placeholder="Título" size="60" maxlength="42"/>
-        <input class="form-card-category" id="categoria" type="text" name="categoria" placeholder="Categoria" size="26" maxlength="42"/>
-    </div>
+    <input class="form-card-title" id="titulo" type="text" name="titulo" placeholder="Título" maxlength="42"/>
+    <input class="form-card-category" id="categoria" type="text" name="categoria" placeholder="Categoria" maxlength="42"/>
     <textarea class="autoresize" id="detalhes" name="detalhes" placeholder="Digite o conteúdo..."></textarea>
     <button class="btn" type="submit">Criar</button>
 </form>
-
-<div>
-    <a href="{% url 'show-category'%}">Categorias</a>
-</div>
 
 <div class="card-container">
     {% for note in notes %}

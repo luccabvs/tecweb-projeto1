@@ -73,7 +73,47 @@ body {
   right: 0;
 }
 
+.home{
+  font-size: 20px;
+  position: absolute;
+  right: 3%;
+  bottom: 0%;
+  padding: 3px 6px;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;  
+}
+
+.tags{
+  font-size: 20px;
+  position: absolute;
+  right: 8%;
+  bottom: 0%;
+  padding: 3px 6px;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+}
+
+.text-home, .text-tags{
+  font-size: 15px;
+}
+
+.page-category{
+  font-size: 40px;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+}
+
 .appbar{
+  position:relative;
   display: flex;
   flex-direction: row;
   background-color:#f7d736;
@@ -117,12 +157,6 @@ body {
   border: unset;
 }
   
-.form-begin{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 textarea {
   resize: none;
 }
@@ -133,6 +167,7 @@ textarea {
 }
 
 .form-card-category{
+  font-size: 120%;
   margin-bottom: 3%;
 }
 
@@ -156,12 +191,6 @@ textarea {
   margin-top: 3%;
   position: relative;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-}
-
-.card-begin{
-  position: relative;
-  display: flex;
-  flex-direction: row;
 }
 
 .card-title{
@@ -293,9 +322,21 @@ textarea {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-.category-name{
+.category-show{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 4%;
+  color: #000000;
+  font-size: 300%;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.category-title{
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   color: #000000;

@@ -5,16 +5,28 @@
 <div class="appbar">
     <img src="{% static 'notes/img/logo-getit.png' %}" class="logo"/>
     <p class="subtitle">Como o Post-it, mas com outro verbo</p>
+    <form method="GET" action="/">
+        <button class="home">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+            <div class="text-home">Home</div>
+        </button>
+    </form>
+    <form method="GET" action="{% url 'show-category' %}">
+        <button class="tags">
+            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+            <div class="text-tags">Categorias</div>
+        </button>
+    </form>
 </div>
 
+<h3 class="category-title">Categorias</h3>
 
-<div class="category-container">
-    {% for note in notes %}
-    {% if note.category.name != '' %}
-        <div class="category">
-            <a class="category-name" href="{% url 'category-list' note.category.name %}">{{ note.category.name }}</a>
-        </div>
-    {% endif %}
+<div class="category-show">   
+    {% for category in categories %}
+        <form method="POST" action="{% url 'category-list' category.name %}">
+            {% csrf_token %}
+            <button class="page-category">{{ category.name }}</button>
+        </form>
     {% endfor %}
 </div>
 
